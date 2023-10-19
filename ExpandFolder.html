@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        /*#delete treewise*/
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title >File Explorer</title>
+        <style>
+            .container {
+                margin: 0 auto;
+                background-color: white;
+                padding: 2px;
+            }
+            .sideEle{
+                float: right;
+            }
+            .root {
+                /*margin: 0 auto;
+                background-color: darkgrey;
+                padding: 2px;*/
+                background-color: #353d43;
+                position: relative;
+                display: inline-block;
+            }
+            .folder1 {
+                background-color: #353d43;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+                color: white;
+            }
+            .dotted {
+                border:0;
+                border: 2px dotted white;
+                color:white;
+                padding: 4px 16px 4px 16px;
+                margin: 4px;
+            }
+            .expandbtn{
+                background-color: #353d43;
+                border: none;
+                padding: 4px;
+            }
+        </style>
+    </head>
+    <body style="background-color: #353d43;">
+        <div class="container">
+            <h1>File Explorer</h1>
+            <div class="sideEle"><input type="text" placeholder="Search Files.." id="inputSearch" onkeyup="" ></div>
+        </div> 
+        <div class="root" id="rootFolder">
+            <button class="expandbtn" onclick="expandFunction()" type="button" >
+                <img src="F:\React Course\dropdown-16.png" alt="buttonpng" />
+            </button>
+            <span class="folderStructure" id="structure">
+                <strong class="dotted">Folder1</strong>
+                <button id="addFile">Add File</button>
+                <button id="addFolder">Add Folder</button>
+                <button id="delete">Delete</button>
+            </span>
+        </div>
+    </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const addFileButton = document.getElementById('addFile');
+            const addFolderButton = document.getElementById('addFolder');
+            const folderDetails = document.querySelector('.folderStructure');
+
+            addFileButton.addEventListener('click', function(){
+                const details = prompt("New"); //how to sepecify text as "New File / New Folder" here in prompt window
+                //const addedText = details.value.trim();
+                
+                if(details){
+                    // const parentNode = document.getElement('div');
+                    // parentNode.classList.add('root');
+                    // const childnode1 = document.getElement('button');
+                    // childnode1.classList.add('expandbtn');
+                    // const childNode2 = document.getElement('span');
+                    // childNode2.classList.add('folderStructure');
+                    const folderdet = document.createElement('span');
+                    folderdet.className = 'folderStructure';
+                    folderdet.innerHTML = `
+                        <strong class="dotted">${details}</strong>
+                        <button id="addFile">Add File</button>
+                        <button id="addFolder">Add Folder</button>
+                        <button id="delete">Delete</button>
+                    `;
+                    folderDetails.append(folderdet);
+                    
+                }
+            });
+
+            /*deleteButton.addEventListener('click', function(){
+                    const removeSpan = document.getElementById('structure');
+                    removeSpan.remove();
+            });*/
+
+            
+        });
+
+
+        
+    </script>
+</html>
